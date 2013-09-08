@@ -1,0 +1,7 @@
+SOURCE=  Graph.cpp\
+        grpBFS.cpp\
+        grpDFS.cpp\
+        main.cpp
+        		 			
+TARGET_OBJ=$(addprefix $(OBJ_DIR)/,$(SOURCE:.cpp=.o))
+
