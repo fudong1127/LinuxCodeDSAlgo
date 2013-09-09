@@ -16,7 +16,9 @@ using std::string;
 typedef arupBSTreeNode ABSTN;
 
 
-ABSTN* getMinBSTreeNode(ABSTN* root);
+ABSTN* getMinBSTreeNode(ABSTN* root,bool isRec = false);
+
+ABSTN* getMaxBSTreeNode(arupBSTreeNode* root,bool isRec = false);
 
 ABSTN* getMaxBSTreeNode(ABSTN* root);
 

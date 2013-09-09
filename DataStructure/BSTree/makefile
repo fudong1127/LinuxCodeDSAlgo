@@ -21,4 +21,4 @@ README:
 
 #Cleans all the *.exe files
 clean:
-	rm -f *.exe ./obj_dir/*.o
+	rm -f ./TARGET ./obj_dir/*.o

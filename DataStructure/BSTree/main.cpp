@@ -45,28 +45,36 @@ main(int argc,char** argv){
 
      if((pRoot = getBSTree(PROPER_TREE)))
      {
-       if(pRoot){
+        //Find the node with the minimum key in the BST
+        if(pRoot){
+           bool isRec = true;
            message = "minimum data: ";
-           cout<<message<<getMinBSTreeNode(pRoot)->data<<endl;
-       }
-       if(pRoot){
+           cout<<message<<getMinBSTreeNode(pRoot,isRec)->data<<endl;
+        }
+        
+        //Find the node with the maximum key in the BST
+        if(pRoot){
+           bool isRec = true;
            message = "maximum data: ";
-           cout<<message<<getMaxBSTreeNode(pRoot)->data<<endl; 
-       }
-       if(pRoot)
-       {
-          ABSTN* pNode = NULL;
-          int key = 1;
-          bool type = true;
+           cout<<message<<getMaxBSTreeNode(pRoot,isRec)->data<<endl; 
+        }
+        
+        //Find the node with the specified key in the BST
+        if(pRoot){
+            ABSTN* pNode = NULL;
+            int key = 1;
+            bool isRec = true;
 
-          pNode   = searchBSTreeNode(pRoot,key,type); 
-          message = (pNode == NULL)?("key not present"):("key is present");
-          cout<<message<<endl;
-       }
-       if(pRoot){
+            pNode   = searchBSTreeNode(pRoot,key,isRec); 
+            message = (pNode == NULL)?("key not present"):("key is present");
+            cout<<message<<endl;
+        }
+        
+        //Find total number of nodes in the BST
+        if(pRoot){
             message = "size of the BSTree: ";
             cout<<message<<getBSTreeSize(pRoot)<<endl;
-       }
+        }
      }
      DELETE(pRoot);
     return 0;
