@@ -25,9 +25,7 @@ createMatrix(MATRIX& matrix)
         for (int col = 0; col < size; col++) 
         {
              cin>>matrix[row][col];
-             cout<<matrix[row][col]<<" ";
         }
-        cout<<endl;
     } 
 }
 
@@ -59,8 +57,7 @@ getTotalCount(MATRIX& matrix,string str){
         for (int col = 0; col < size; col++) 
         {
             if(matrix[row][col] == 'A'){
-	        int cnt = getCount(matrix,str,0,row,col);
-                nCount += cnt;
+	            nCount += getCount(matrix,str,0,row,col);            
             } 
         }
     } 
@@ -73,14 +70,12 @@ main(int argc,char** argv){
     //Read the Size
     int N = 0;
     cin>>N;
-    cout<<N<<endl;
 
     //Get the matrix
     MATRIX  let_Matrix(N,vector<char>(N,0));
     createMatrix(let_Matrix); 
     
     cin>>str;
-    cout<<str<<endl;
 
     cout<<getTotalCount(let_Matrix,str); 
     return 0;
