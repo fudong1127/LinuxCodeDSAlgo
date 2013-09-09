@@ -2,7 +2,7 @@
 A collection of Datastructure, Algorithm, Design pattern.
 
 ## Goals
-    Programming at work and Programming at home as a hobby are two different things,
+Programming at work and Programming at home as a hobby are two different things,
 this is my hobby,my second love (first love is my wife :) ). 
     There is so much more to coding then just pointers/refs/memory, 
 its about the environment/editor/compiler/custom makefile, its not about getting your code to work,
