@@ -27,11 +27,12 @@ getBSTree(int type,void* pContainer){
                 node1 = node2 = node3 = NULL;
             }break;
         case PROPER_VECTOR:{
-            //vector<int>* pVector = (vector<int>*)pContainer; 
-            //pVector = NULL;
+            vector<int>* pVector = (vector<int>*)pContainer; 
+            pVector = NULL;
             }break;
         case PROPER_LIST:{
-            //list<int>* plist = (list<int>*)pContainer; 
+            list<int>* plist = (list<int>*)pContainer; 
+            plist = NULL;
             }break;
         default:
             std::cout<<"Invalid type of tree!!"<<std::endl;

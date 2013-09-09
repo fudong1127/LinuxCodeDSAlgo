@@ -3,7 +3,7 @@
 #include "iostream"
 #include "vector"
 #include "string"
-//#include "list.h"
+#include "list"
 #include "arupBSTree.h"   
     
 using std::cout;
@@ -11,6 +11,7 @@ using std::cin;
 using std::endl;
 using std::vector;
 using std::string;
+using std::list;
 
 
 typedef arupBSTreeNode ABSTN;
