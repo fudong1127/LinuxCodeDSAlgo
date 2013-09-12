@@ -64,7 +64,7 @@ getTotalCount(MATRIX& matrix,string str){
     {
         for (int col = 0; col < size; col++) 
         {
-            if(matrix[row][col] == 'A'){
+            if(matrix[row][col] == str[0]){
 	            nCount += getCount(matrix,str,0,row,col);            
             } 
         }
