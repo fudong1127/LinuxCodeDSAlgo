@@ -1,11 +1,8 @@
 #ifndef __ARUPBTREE_H__
 #define __ARUPBTREE_H__
 #include "iostream"
+#include "../common.h"
 
-#define DELETE(p)           if(p){\
-                                delete p;\
-                                p = NULL;\
-                            }
 class arupBSTreeNode{
         public:
             int data;

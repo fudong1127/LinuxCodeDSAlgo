@@ -1,0 +1,8 @@
+SOURCE=     getMinBSTreeNode.cpp\
+            getMaxBSTreeNode.cpp\
+            searchBSTreeNode.cpp\
+            getBSTreeSize.cpp\
+            main.cpp
+        		 			
+TARGET_OBJ=$(addprefix $(OBJ_DIR)/,$(SOURCE:.cpp=.o))
+
