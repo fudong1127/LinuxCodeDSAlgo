@@ -31,7 +31,7 @@ createMatrix(MATRIX& matrix)
 }
 
 int 
-getCount(MATRIX& matrix,string str,int index,int row,int col){
+getCount(MATRIX& matrix,string& str,int index,int row,int col){
    int cnt = 0;
    if(!isValidRange(row,matrix.size()) || 
       !isValidRange(col,matrix.size()) || 
@@ -56,7 +56,7 @@ getCount(MATRIX& matrix,string str,int index,int row,int col){
 }
 
 int 
-getTotalCount(MATRIX& matrix,string str){
+getTotalCount(MATRIX& matrix,string& str){
     int nCount = 0;
     int size = matrix.size();
     
