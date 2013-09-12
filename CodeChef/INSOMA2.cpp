@@ -74,12 +74,13 @@ getTotalCount(MATRIX& matrix,string& str){
 
 int
 main(int argc,char** argv){
-    string str;
     int N = 0;
     cin>>N;
 
     MATRIX  let_Matrix(N,vector<char>(N,'X'));
     createMatrix(let_Matrix); 
+    
+    string str;
     cin>>str;
 
     cout<<getTotalCount(let_Matrix,str)<<endl; 
