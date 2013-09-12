@@ -10,11 +10,12 @@ using std::string;
 
 typedef vector< vector<char> > MATRIX;
 
-bool isValidRange(int range,int  max){
-    if(range < 0 || range == max){
-        return false;
+bool 
+isValidRange(int pos,int  max){
+    if(pos >=0 && pos < max){
+        return true;
     }
-    return true;
+    return false;
 }
 void 
 createMatrix(MATRIX& matrix)
@@ -30,15 +31,22 @@ createMatrix(MATRIX& matrix)
 }
 
 int 
-getCount(MATRIX& matrix,string str,unsigned int index,int row,int col){
+getCount(MATRIX& matrix,string str,int index,int row,int col){
    int cnt = 0;
-   if(!isValidRange(row,matrix.size()) || !isValidRange(col,matrix.size()) || index == str.length() || matrix[row][col] != str[index]){
+   if(!isValidRange(row,matrix.size()) || 
+      !isValidRange(col,matrix.size()) || 
+      index >= str.length() || 
+      matrix[row][col] != str[index])
+   {
          cnt = 0;
    }
-   else if((matrix[row][col] == str[index]) && (str.length() == index + 1)){
+   else if((matrix[row][col] == str[index]) && 
+           (str.length() == index + 1))
+   {
         cnt = 1; 
    }
-   else{
+   else
+   {
         cnt = getCount(matrix,str,index + 1,row - 1,col - 1) +
               getCount(matrix,str,index + 1,row - 1,col + 1) +
               getCount(matrix,str,index + 1,row + 1,col - 1) +
@@ -67,16 +75,13 @@ getTotalCount(MATRIX& matrix,string str){
 int
 main(int argc,char** argv){
     string str;
-    //Read the Size
     int N = 0;
     cin>>N;
 
-    //Get the matrix
-    MATRIX  let_Matrix(N,vector<char>(N,0));
+    MATRIX  let_Matrix(N,vector<char>(N,'X'));
     createMatrix(let_Matrix); 
-    
     cin>>str;
 
-    cout<<getTotalCount(let_Matrix,str); 
+    cout<<getTotalCount(let_Matrix,str)<<endl; 
     return 0;
 }
