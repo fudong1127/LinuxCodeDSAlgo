@@ -12,49 +12,38 @@ using std::vector;
 typedef vector< vector<char> > grid;
 int prime_arr[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
 
-void
-showGrid(grid& m_grid){
-  int rowSize = m_grid.size();
-  for (int row = 0; row < rowSize; row++)
-  {
-    int colSize = m_grid[row].size();
-    for (int col = 0; col < colSize; col++)
-    {
-      cout<<m_grid[row][col]; 
-    }
-    cout<<endl;
-  }
-}
-
 int 
 getNumberOfMonsters(int lowest){
     int nMonsters = 0;
     int left      = 0;
     int right     = sizeof(prime_arr)/sizeof(prime_arr[0]);
-
-    while(left <= right){
-        int mid = (left + right)/2;
-        if(prime_arr[mid] == lowest){
+    while(left<=right){
+         int mid = (left + right)/2;
+         if(prime_arr[mid] == lowest){
             nMonsters = mid - left + 1;
             break;
-        }
-        else if(prime_arr[mid] < lowest){
-            lowest = mid + 1;
-        }
-        else{
-            right = mid - 1;
-        }
+         }
+         else if(lowest > prime_arr[mid] && lowest < prime_arr[mid+1]){
+           nMonsters = mid - left + 1;
+           break;
+         }
+         if(prime_arr[mid] > lowest){
+            right = mid-1;
+         }
+         else if(prime_arr[mid] < lowest){
+            left = mid+1;
+         }
     }
     return nMonsters;
 }
 
 bool 
-isMonsterPresent(grid& m_grid,int row,int col){
+isMonsterPresent(grid& m_grid,int row,int col,int& min){
   int  left_count  = 0;
   int  right_count = 0;
   int  down_count  = 0;
   int  up_count    = 0;
-  int  min         = INT_MAX;  
+  min              = INT_MAX;  
   
   //get left_count
   for (int j = col - 1; j >= 0 && m_grid[row][j] == '^'; j--)
@@ -84,7 +73,9 @@ isMonsterPresent(grid& m_grid,int row,int col){
   }  
   SET_MIN(min,down_count);
 
-  return  getNumberOfMonsters(7);
+  if(min < 2)
+      return false;
+  return true;
 }
 
 void
@@ -109,10 +100,10 @@ getCount(grid& m_grid){
     int colSize = m_grid[row].size();
     for (int col = 0; col < colSize; col++)
     {
-      if('^'== m_grid[row][col] && 
-        isMonsterPresent(m_grid,row,col))
+      int CRC_Count = 0;
+      if('^'== m_grid[row][col] && isMonsterPresent(m_grid,row,col,CRC_Count))
       {
-         count++;
+         count += getNumberOfMonsters(CRC_Count);
       }
     }
   }
@@ -132,8 +123,6 @@ main(int argc,char** argv){
     grid m_grid (row,vector<char>(col,'^'));
     
     initGrid(m_grid);
-
-   // showGrid(m_grid);
 
     cout<<getCount(m_grid)<<endl;
   }
