@@ -2,13 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 using namespace std;
-#define YES				"YES"
-#define NO				"NO"
+#define YES				        "YES"
+#define NO				        "NO"
 #define GET(n)           cin>>n
 #define PUT(n)           cout<<n<<endl
-#define INDEX(val)		 (val-'a')
-#define MAX 			 40001
-#define ALPHA_RANGE		 26
+#define INDEX(val)		  (val-'a')
+#define MAX 			      40001
+#define ALPHA_RANGE		  26
 
 int main(){
 	int nTestCases = 0;
