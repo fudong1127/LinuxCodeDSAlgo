@@ -36,6 +36,7 @@ getNumberOfMonsters(int lowest){
 
     if(chache[lowest] != -1)
       nMonsters = chache[lowest];
+
     else{
        while(left<=right){
               int mid = (left + right)/2;
@@ -71,29 +72,29 @@ isMonsterPresent(grid& m_grid,int row,int col,int& min){
   for (unsigned int j = col - 1; j >= 0 && m_grid[row][j] == '^'; j--)
   {
       left_count++;
+      SET_MIN(min,left_count);
   }
-  SET_MIN(min,left_count);
 
   //get right_count
   for (unsigned int j = col + 1; j < m_grid[row].size() && m_grid[row][j] == '^' && right_count < min ; j++)
   {
         right_count++;
+        SET_MIN(min,right_count);
   }
-  SET_MIN(min,right_count);
 
   //get up_count
   for (unsigned int i = row - 1; i >= 0 && m_grid[i][col] == '^' && up_count < min; i--)
   {
         up_count++;
+        SET_MIN(min,up_count);
   }
-  SET_MIN(min,up_count);
 
   //get down_count
   for (unsigned int i = row + 1; i < m_grid.size() && m_grid[i][col] == '^' && down_count < min; i++)
   {
         down_count++;
+        SET_MIN(min,down_count);
   }
-  SET_MIN(min,down_count);
 
   if(min < 2)
       return false;
