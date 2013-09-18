@@ -8,17 +8,20 @@ using std::endl;
 using std::vector;
 
 #define SET_MIN(min,val) if(val < min){min = val;}
+#define ARR_SIZE(a)		sizeof(a)/sizeof(a[0])
 
 typedef vector< vector<char> > grid;
+
 int prime_arr[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+
 vector <int> chache(500,-1);
 
 int
 getNumberOfMonsters(int lowest){
     int nMonsters = 0;
     int left      = 0;
-    int right     = sizeof(prime_arr)/sizeof(prime_arr[0]) - 1;
-   
+    int right     = ARR_SIZE(prime_arr) - 1;
+
     if(chache[lowest] != -1)
       return chache[lowest];
 
@@ -40,43 +43,43 @@ getNumberOfMonsters(int lowest){
          }
     }
     chache[lowest] = nMonsters;
-    return nMonsters;
+    return chache[lowest];
 }
 
-bool 
+bool
 isMonsterPresent(grid& m_grid,int row,int col,int& min){
   int  left_count  = 0;
   int  right_count = 0;
   int  down_count  = 0;
   int  up_count    = 0;
-  min              = INT_MAX;  
-  
+  min              = INT_MAX;
+
   //get left_count
-  for (int j = col - 1; j >= 0 && m_grid[row][j] == '^'; j--)
+  for (unsigned int j = col - 1; j >= 0 && m_grid[row][j] == '^'; j--)
   {
-      left_count++;      
+      left_count++;
   }
   SET_MIN(min,left_count);
 
   //get right_count
-  for (int j = col + 1; j < m_grid[row].size() && m_grid[row][j] == '^'; j++)
+  for (unsigned int j = col + 1; j < m_grid[row].size() && m_grid[row][j] == '^'; j++)
   {
         right_count++;
   }
   SET_MIN(min,right_count);
-  
+
   //get up_count
-  for (int i = row - 1; i >= 0 && m_grid[i][col] == '^'; i--)
+  for (unsigned int i = row - 1; i >= 0 && m_grid[i][col] == '^'; i--)
   {
         up_count++;
   }
   SET_MIN(min,up_count);
-  
+
   //get down_count
-  for (int i = row + 1; i < m_grid.size() && m_grid[i][col] == '^'; i++)
+  for (unsigned int i = row + 1; i < m_grid.size() && m_grid[i][col] == '^'; i++)
   {
         down_count++;
-  }  
+  }
   SET_MIN(min,down_count);
 
   if(min < 2)
@@ -92,7 +95,7 @@ initGrid(grid& m_grid){
     int colSize = m_grid[row].size();
     for (int col = 0; col < colSize; col++)
     {
-      cin>>m_grid[row][col]; 
+      cin>>m_grid[row][col];
     }
   }
 }
@@ -123,11 +126,11 @@ main(int argc,char** argv){
   while(nTest--){
     int row = 0;
     int col = 0;
-   
+
     cin>>row>>col;
 
     grid m_grid (row,vector<char>(col,'^'));
-    
+
     initGrid(m_grid);
 
     cout<<getCount(m_grid)<<endl;
