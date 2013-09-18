@@ -12,7 +12,19 @@ using std::vector;
 
 typedef vector< vector<char> > grid;
 
-int prime_arr[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+int prime_arr[] = {2,3,5,7,11,13,17,19,23,29,31,
+                   37,41,43,47,53,59,61,67,71,
+                   31,37,41,43,47,53,59,61,67,71,
+                   73,79,83,89,97,101,103,107,109,113,
+                   127,131,137,139,149,151,157,163,167,173,
+                   179,181,191,193,197,199,211,223,227,229,
+                   233,239,241,251,257,263,269,271,277,281,
+                   283,293,307,311,313,317,331,337,347,349,
+                   353,359,367,373,379,383,389,397,401,409,
+                   419,421,431,433,439,443,449,457,461,463,
+                   467,479,487,491,499,503,509,521,523,541,
+                   547,557,563,569,571,577,587,593,599,601,
+                   607,613,617,619};
 
 vector <int> chache(500,-1);
 
@@ -23,27 +35,28 @@ getNumberOfMonsters(int lowest){
     int right     = ARR_SIZE(prime_arr) - 1;
 
     if(chache[lowest] != -1)
-      return chache[lowest];
-
-    while(left<=right){
-         int mid = (left + right)/2;
-         if(prime_arr[mid] == lowest){
-            nMonsters = mid - left + 1;
-            break;
-         }
-         else if(lowest > prime_arr[mid] && lowest < prime_arr[mid+1]){
-           nMonsters = mid - left + 1;
-           break;
-         }
-         if(prime_arr[mid] > lowest){
-            right = mid - 1;
-         }
-         else if(prime_arr[mid] < lowest){
-            left = mid + 1;
-         }
-    }
+      nMonsters = chache[lowest];
+    else{
+       while(left<=right){
+              int mid = (left + right)/2;
+              if(prime_arr[mid] == lowest){
+                  nMonsters = mid - left + 1;
+                  break;
+              }
+              else if(lowest > prime_arr[mid] && lowest < prime_arr[mid+1]){
+                  nMonsters = mid - left + 1;
+                  break;
+              }
+              if(prime_arr[mid] > lowest){
+                  right = mid - 1;
+              }
+              else if(prime_arr[mid] < lowest){
+                  left = mid + 1;
+              }
+        }
     chache[lowest] = nMonsters;
-    return chache[lowest];
+    }
+    return nMonsters;
 }
 
 bool
@@ -62,21 +75,21 @@ isMonsterPresent(grid& m_grid,int row,int col,int& min){
   SET_MIN(min,left_count);
 
   //get right_count
-  for (unsigned int j = col + 1; j < m_grid[row].size() && m_grid[row][j] == '^'; j++)
+  for (unsigned int j = col + 1; j < m_grid[row].size() && m_grid[row][j] == '^' && right_count < min ; j++)
   {
         right_count++;
   }
   SET_MIN(min,right_count);
 
   //get up_count
-  for (unsigned int i = row - 1; i >= 0 && m_grid[i][col] == '^'; i--)
+  for (unsigned int i = row - 1; i >= 0 && m_grid[i][col] == '^' && up_count < min; i--)
   {
         up_count++;
   }
   SET_MIN(min,up_count);
 
   //get down_count
-  for (unsigned int i = row + 1; i < m_grid.size() && m_grid[i][col] == '^'; i++)
+  for (unsigned int i = row + 1; i < m_grid.size() && m_grid[i][col] == '^' && down_count < min; i++)
   {
         down_count++;
   }
