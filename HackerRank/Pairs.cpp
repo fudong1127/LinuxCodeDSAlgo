@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include <iostream>
+#include<iostream>
 
 int compare (const void * a, const void * b);
 
