@@ -11,12 +11,17 @@ using std::vector;
 
 typedef vector< vector<char> > grid;
 int prime_arr[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+vector <int> chache(500,-1);
 
-int 
+int
 getNumberOfMonsters(int lowest){
     int nMonsters = 0;
     int left      = 0;
-    int right     = sizeof(prime_arr)/sizeof(prime_arr[0]);
+    int right     = sizeof(prime_arr)/sizeof(prime_arr[0]) - 1;
+   
+    if(chache[lowest] != -1)
+      return chache[lowest];
+
     while(left<=right){
          int mid = (left + right)/2;
          if(prime_arr[mid] == lowest){
@@ -28,12 +33,13 @@ getNumberOfMonsters(int lowest){
            break;
          }
          if(prime_arr[mid] > lowest){
-            right = mid-1;
+            right = mid - 1;
          }
          else if(prime_arr[mid] < lowest){
-            left = mid+1;
+            left = mid + 1;
          }
     }
+    chache[lowest] = nMonsters;
     return nMonsters;
 }
 
