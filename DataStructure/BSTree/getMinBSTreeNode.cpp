@@ -22,7 +22,7 @@ arupBSTreeNode*
 getMinBSTreeNode(arupBSTreeNode* root,bool isRec)
 {
     if(isRec){
-       return getRecMinBSTreeNode(root)
+       return getRecMinBSTreeNode(root);
     }else{
         return getItrMinBSTreeNode(root);
     }

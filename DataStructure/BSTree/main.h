@@ -1,11 +1,13 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
+
 #include "iostream"
 #include "vector"
 #include "string"
 #include "list"
 #include "arupBSTree.h"   
-    
+#include "../common.h"
+
 using std::cout;
 using std::cin;
 using std::endl;
