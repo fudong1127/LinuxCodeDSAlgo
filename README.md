@@ -11,7 +11,8 @@ like it.  So if you intend to use this work, you are most welcome, I would be gl
 if you report bugs/issues and point me to methods which are more efficient,it would indeed 
 be a great learning curve.
 
-<img src="./recource/icon.jpg">
+<a href="http://tinypic.com?ref=11t8k6f" target="_blank"><img src="http://i41.tinypic.com/11t8k6f.jpg" border="0" alt="Image and video hosting by TinyPic">
+</a>
 ## Usage
 Anyone is free to fork and download this project and its code and use it, just remmember to 
 acknowledge this project.
