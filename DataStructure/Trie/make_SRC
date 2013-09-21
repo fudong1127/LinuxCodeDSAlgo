@@ -1,7 +1,8 @@
-SOURCE=     getMinBSTreeNode.cpp\
-            getMaxBSTreeNode.cpp\
-            searchBSTreeNode.cpp\
-            getBSTreeSize.cpp\
+SOURCE=     arupTrie.cpp\
+            arupTrieDeleteKey.cpp\
+            arupTrieEmpty.cpp\
+            arupTrieInsertKey.cpp\
+            arupTrieIsPresent.cpp\
             main.cpp
         		 			
 TARGET_OBJ=$(addprefix $(OBJ_DIR)/,$(SOURCE:.cpp=.o))
