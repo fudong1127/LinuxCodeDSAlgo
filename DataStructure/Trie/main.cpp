@@ -1,16 +1,13 @@
-/*
- * main.cpp
- *
- *  Created on: 24-Aug-2013
- *      Author: ArupMadhu
- */
-
-#include "iostream"
 #include "arupTrie.h"
-#include "common.h"
+#include "iostream"
+#include "vector"
+#include "string"
+#include "../common.h" 
 
-using    std::cout;
-using    std::endl;
+using std::cout;
+using std::endl;
+using std::vector;
+using std::string;
 
 int 
 main(int argc,char** argv){

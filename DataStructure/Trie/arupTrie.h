@@ -10,7 +10,7 @@
 
 #include "vector"
 #include "string"
-#include "common.h"
+#include "../common.h"
 
 using    std::vector;
 using    std::string;

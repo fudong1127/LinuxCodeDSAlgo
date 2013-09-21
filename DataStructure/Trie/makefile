@@ -1,7 +1,7 @@
 #####################################################################
-# Graph Algorithm collection
+# Trie datastructure implementation
 # Author:Arup Upadhayay
-# Date:19 March 2011
+# Date:21st Sept 2013
 ######################################################################
 
 #variable defination
