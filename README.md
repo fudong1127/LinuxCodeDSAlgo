@@ -17,5 +17,3 @@ alt="Vi rocks"></a>
 ## Usage
 Anyone is free to fork and download this project and its code and use it, just remmember to 
 acknowledge this project.
-
-
