@@ -14,6 +14,9 @@ be a great learning curve.
 <a href="http://tinypic.com?ref=2qkui9s" target="_blank"><img src="http://i42.tinypic.com/2qkui9s.png" border="0"
 alt="Vi rocks"></a>
 
-## Usage
+### Usage
 Anyone is free to fork and download this project and its code and use it, just remmember to 
 acknowledge this project.
+
+#### Refrences
+* [Problem Solving and Algorithm](http://interactivepython.org/runestone/static/pythonds/index.html)
