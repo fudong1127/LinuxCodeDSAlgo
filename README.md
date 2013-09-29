@@ -19,4 +19,4 @@ Anyone is free to fork and download this project and its code and use it, just r
 acknowledge this project.
 
 #### Refrences
-* [Problem Solving and Algorithm](http://interactivepython.org/runestone/static/pythonds/index.html)
+* [Problem Solving and Algorithm and Datastructures](http://interactivepython.org/runestone/static/pythonds/index.html)
