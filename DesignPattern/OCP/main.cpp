@@ -4,15 +4,29 @@
 void ExploreOpenClosePrinciple(void){
   //OpenClose Principle example (refer to README.md) 
   ShapeManager* pSM = new ShapeManager();
-  Shape* pShape1 = new Circle(10);
-  Shape* pShape2 = new Rectangle(10,20);
-  Shape* pShape3 = new Triangle(10,30);
-  pSM->showDetails(pShape1);
-  pSM->showDetails(pShape2);
-  pSM->showDetails(pShape3);
-  delete pShape1;
-  delete pShape2;
-  delete pShape3;
+  for (int i = 0; i < 3; i++) {
+        int choice = 0;
+        cout<<"0.Circle 1.Rectangle 2.Triangle:"<<endl;
+        cin>>choice;
+        Shape* pShape = NULL;
+        switch(choice)
+        {
+          case 0:
+                pShape = new Circle(10);
+            break;
+          case 1:
+                pShape = new Rectangle(10,20);
+            break;
+          case 2:
+                pShape = new Triangle(10,30);
+            break;
+          default:
+                pShape = new Shape();
+            break;
+        }
+        pSM->showDetails(pShape);
+        delete pShape;
+  }
   delete pSM;
 }
 
