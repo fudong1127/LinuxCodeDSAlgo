@@ -7,7 +7,8 @@ int compare (const void * a, const void * b);
 unsigned int N;
 unsigned int K;
 
-int main(void){
+int main(void)
+{
 	std::cin>>N>>K;
 	int* arr = (int*)malloc(sizeof(int) * N);
 	for(unsigned int index = 0;index < N ; index++){
@@ -28,7 +29,7 @@ int main(void){
 	}
 	std::cout<<cnt;
 	free(arr);
-    return 0;
+  return 0;
 }
 
 int compare (const void * a, const void * b)

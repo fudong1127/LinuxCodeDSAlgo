@@ -13,7 +13,8 @@ int compare (const void * a, const void * b){
 
 
 int
-main(int argc,char** argv){
+main(int argc,char** argv)
+{
 	int N    = 0;
 	int K 	 = 0;
 	int cost = 0;
@@ -21,9 +22,10 @@ main(int argc,char** argv){
 
 	friends = (int*)malloc(sizeof(int) * K);
 	flowers = (int*)malloc(sizeof(int) * N);
-	rank	= (int*)malloc(sizeof(int) * N);
+	rank	  = (int*)malloc(sizeof(int) * N);
 
-	for(int i = 0;i < N;i++){
+	for(int i = 0;i < N;i++)
+  {
 		scanf("%d",&flowers[i]);
 		rank[i] = i;
 	}
@@ -31,7 +33,8 @@ main(int argc,char** argv){
 	qsort(rank,N,sizeof(int),compare);
 
 	int j = 0;
-	for(int i = N-1;i >= 0;i--){
+	for(int i = N-1;i >= 0;i--)
+  {
 		cost += (friends[j] + 1)*flowers[rank[i]];
 		++friends[j++];
 		if(j == K)
