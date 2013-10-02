@@ -20,3 +20,4 @@ acknowledge this project.
 
 #### Refrences
 * [Problem Solving and Algorithm and Datastructures](http://interactivepython.org/runestone/static/pythonds/index.html)
+* [Jeff Erickson's Algorithm Course Mateial](http://www.cs.uiuc.edu/~jeffe/teaching/algorithms/)
