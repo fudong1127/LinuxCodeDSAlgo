@@ -1,6 +1,6 @@
 #include "iostream"
 #include "vector"
-#include <stdlib.h>
+#include <cstdlib>
 
 using std::cout;
 using std::cin;
@@ -23,6 +23,9 @@ class MakeChangeInterface{
     virtual void DoMakeChange(Data& data)     = 0;
   
   public:
+    virtual ~MakeChangeInterface(){
+    }
+    
     void performMakeChange(Data& data)
     {
        qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
@@ -128,6 +131,7 @@ class MakeChange{
         }
         return (*this);
     }
+
     ~MakeChange()
     {
         if(this->pData){
@@ -142,8 +146,10 @@ class MakeChange{
           delete [] pData;
           pData = NULL;
         }
-        if(this->pInterface)
+        if(this->pInterface){
+          delete this->pInterface;
           this->pInterface = NULL;
+        }
     }
 };
 
