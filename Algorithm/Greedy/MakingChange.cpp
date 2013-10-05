@@ -64,6 +64,7 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
           if(value + sum > data.nTotalVal)
           {
               delete [] data.pSolutionSet->pCoins;
+              data.pSolutionSet->pCoins = NULL;
               data.pSolutionSet->size = -1;
               break;
           }
@@ -133,10 +134,13 @@ class MakeChange{
           if(this->pData->pSolutionSet){
               if(this->pData->pSolutionSet->pCoins){
                 delete [] this->pData->pSolutionSet->pCoins;
+                this->pData->pSolutionSet->pCoins = NULL;
               }
               delete this->pData->pSolutionSet;
+              this->pData->pSolutionSet = NULL;
           }
           delete [] pData;
+          pData = NULL;
         }
         if(this->pInterface)
           this->pInterface = NULL;
