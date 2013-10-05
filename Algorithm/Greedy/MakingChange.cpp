@@ -42,13 +42,13 @@ class MakeChangeInterface{
         int nResult = 0;
         int n1 = *(int*)num1;
         int n2 = *(int*)num2;
-
+        
         if(n1 == n2)
           nResult = 0;
         else if(n1 < n2)
-          nResult = -1;
-        else
           nResult = 1;
+        else
+          nResult = -1;
 
         return nResult;
     }
@@ -57,7 +57,20 @@ class MakeChangeInterface{
 class GreedyApproachMakeChange : public MakeChangeInterface{
   public:
     virtual void DoMakeChange(Data& data){
-       
+       int sum = 0;
+       for (int i = 0; i < data.nNumCoins && sum < data.nTotalVal; i++) 
+       {
+          int value = data.pCoins[i];
+          if(value + sum > data.nTotalVal)
+          {
+              delete data.pSolutionSet->pCoins;
+              data.pSolutionSet->size = -1;
+              break;
+          }
+          data.pSolutionSet->pCoins[i] = value;
+          data.pSolutionSet->size++;
+          sum = sum + value;
+       }
     }
 };
 
@@ -71,6 +84,7 @@ class MakeChange{
   private:
     MakeChangeInterface* pInterface;
     Data* pData;
+
   public:
     MakeChange(MakeChangeInterface* pIF)
     {
@@ -78,12 +92,14 @@ class MakeChange{
        this->pData      = new Data(); 
     }
     
-    void performMakeChange(void)
+    MakeChange& performMakeChange(void)
     {
       if(this->pInterface)
         this->pInterface->performMakeChange(*pData);
       else
         cout<<"You forgot to set the Interface!!"<<endl;
+
+      return *this;
     }
     
     MakeChange& fillData(void)
@@ -101,9 +117,16 @@ class MakeChange{
         {
             cin>>(pData->pCoins)[i];
         }
+    
         return (*this);
     }
 
+    MakeChange& showSolution(){
+        for (int i = 0; i < this->pData->pSolutionSet->size; i++) {
+          cout<<this->pData->pSolutionSet->pCoins[i]<<" ";
+        }
+        return (*this);
+    }
     ~MakeChange()
     {
         if(this->pData)
@@ -117,7 +140,7 @@ class MakeChange{
 int 
 main(int argc,char** argv){
   MakeChange* pMakeChange = new MakeChange(new GreedyApproachMakeChange());
-  (*pMakeChange).fillData().performMakeChange();
+  (*pMakeChange).fillData().performMakeChange().showSolution();
   delete pMakeChange;
   return 0;
 }
