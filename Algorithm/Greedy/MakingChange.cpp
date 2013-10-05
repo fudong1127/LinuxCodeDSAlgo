@@ -5,34 +5,65 @@
 using std::cout;
 using std::cin;
 using std::endl;
-using std::vector;
+
+typedef struct __SolutionSet{
+      int*          pCoins;
+      int           size;
+}SolutionSet;
 
 typedef struct __Data{
       int           nTotalVal;
       int           nNumCoins;
       int*          pCoins;
+      SolutionSet*  pSolutionSet;
 }Data;
 
 class MakeChangeInterface{
+  protected:
+    virtual void DoMakeChange(Data& data)     = 0;
+  
   public:
-    virtual void doMakeChange(Data& data) = 0;
+    void performMakeChange(Data& data)
+    {
+       qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
+       if(data.pSolutionSet){
+          if(data.pSolutionSet->pCoins){
+            delete [] data.pSolutionSet->pCoins;
+          }
+          delete data.pSolutionSet;
+       }
+       data.pSolutionSet  = new SolutionSet();
+       data.pSolutionSet->pCoins  = new int[data.nNumCoins];
+       data.pSolutionSet->size    = 0;
+       DoMakeChange(data);
+    }
 
     static int compare(const void* num1,const void* num2){
         int nResult = 0;
+        int n1 = *(int*)num1;
+        int n2 = *(int*)num2;
+
+        if(n1 == n2)
+          nResult = 0;
+        else if(n1 < n2)
+          nResult = -1;
+        else
+          nResult = 1;
+
         return nResult;
     }
 };
 
 class GreedyApproachMakeChange : public MakeChangeInterface{
   public:
-    virtual void doMakeChange(Data& data){
-       qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
+    virtual void DoMakeChange(Data& data){
+       
     }
 };
 
 class DynamicApproachMakeChange : public MakeChangeInterface{
   public:
-    virtual void doMakeChange(Data& data){
+    virtual void DoMakeChange(Data& data){
     }
 };
 
@@ -47,15 +78,15 @@ class MakeChange{
        this->pData      = new Data(); 
     }
     
-    void doMakeChange(void)
+    void performMakeChange(void)
     {
       if(this->pInterface)
-        this->pInterface->doMakeChange(*pData);
+        this->pInterface->performMakeChange(*pData);
       else
         cout<<"You forgot to set the Interface!!"<<endl;
     }
     
-    void fillData(void)
+    MakeChange& fillData(void)
     {
         cout<<"What is the Total amaout?"<<endl; 
         cin>>pData->nTotalVal;
@@ -70,6 +101,7 @@ class MakeChange{
         {
             cin>>(pData->pCoins)[i];
         }
+        return (*this);
     }
 
     ~MakeChange()
@@ -85,7 +117,7 @@ class MakeChange{
 int 
 main(int argc,char** argv){
   MakeChange* pMakeChange = new MakeChange(new GreedyApproachMakeChange());
-  pMakeChange->fillData();
+  (*pMakeChange).fillData().performMakeChange();
   delete pMakeChange;
   return 0;
 }
