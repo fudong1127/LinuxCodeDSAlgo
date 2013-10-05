@@ -17,7 +17,7 @@ class MakeChangeInterface{
   public:
     virtual void doMakeChange(Data& data) = 0;
 
-    int compare(const void* num1,const void* num2){
+    static int compare(const void* num1,const void* num2){
         int nResult = 0;
         return nResult;
     }
