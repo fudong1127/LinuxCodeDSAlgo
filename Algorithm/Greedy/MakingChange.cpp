@@ -8,10 +8,12 @@ using std::endl;
 
 class SolutionSet{
   public:
+      bool          isSol;
       int*          pCoins;
       int           size;
       SolutionSet(int num)
       {
+          this->isSol   = false;
           this->size    = 0;
           this->pCoins  = new int[num];
       }
@@ -21,7 +23,8 @@ class SolutionSet{
           delete [] pCoins;
           pCoins = NULL;
         }
-        size = -1;
+        size    = -1;
+        isSol   =  false;
       }
 };
 
@@ -31,6 +34,13 @@ class Data{
       int           nNumCoins;
       int*          pCoins;
       SolutionSet*  pSolutionSet;
+      Data(int TV,int nNC)
+      {
+          this->nTotalVal     = TV;
+          this->nNumCoins     = nNC;
+          this->pCoins        = new int[this->nNumCoins];
+          this->pSolutionSet  = new SolutionSet(this->nNumCoins);
+      }
       ~Data()
       {
         if(pCoins)
@@ -57,11 +67,6 @@ class MakeChangeInterface{
     void performMakeChange(Data& data)
     {
        qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
-       if(data.pSolutionSet)
-       {
-          delete data.pSolutionSet;
-       }
-       data.pSolutionSet  = new SolutionSet(data.nNumCoins);
        DoMakeChange(data);
     }
 
@@ -91,10 +96,10 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
           int value = data.pCoins[i];
           if(value + sum > data.nTotalVal)
           {
-              delete data.pSolutionSet;
-              data.pSolutionSet = NULL;
+              data.pSolutionSet->isSol = false;
               break;
           }
+          data.pSolutionSet->isSol     = true;
           data.pSolutionSet->pCoins[i] = value;
           data.pSolutionSet->size++;
           sum = sum + value;
@@ -117,7 +122,7 @@ class MakeChange{
     MakeChange(MakeChangeInterface* pIF)
     {
        this->pInterface = pIF;
-       this->pData      = new Data(); 
+       this->pData      = NULL; 
     }
     
     MakeChange& performMakeChange(void)
@@ -132,18 +137,19 @@ class MakeChange{
     
     MakeChange& fillData(void)
     {
+        int TV = 0;
         cout<<"What is the Total amaout?"<<endl; 
-        cin>>pData->nTotalVal;
+        cin>>TV;
   
+        int nNC = 0;
         cout<<"How many coins are there?"<<endl; 
-        cin>>pData->nNumCoins;
+        cin>>nNC;
 
-        if(pData->pCoins)
-         delete pData->pCoins;
-
-        pData->pCoins = new int[pData->nNumCoins];
+        if(!pData)
+        {
+            pData = new Data(TV,nNC);
+        }
         cout<<"Enter the coin values:"<<endl; 
-
         for (int i = 0; i < pData->nNumCoins; i++) 
         {
             cin>>(pData->pCoins)[i];
@@ -153,7 +159,7 @@ class MakeChange{
     }
 
     MakeChange& showSolution(){
-      if(this->pData->pSolutionSet)
+      if(this->pData->pSolutionSet->isSol)
       {  
         for (int i = 0; i < this->pData->pSolutionSet->size; i++) 
         {
