@@ -65,7 +65,7 @@ class MakeChangeInterface{
     }
     
     void performMakeChange(Data& data)
-    {
+    {      
        qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
        DoMakeChange(data);
     }
@@ -89,7 +89,11 @@ class MakeChangeInterface{
 
 class GreedyApproachMakeChange : public MakeChangeInterface{
   public:
-    virtual void DoMakeChange(Data& data){
+    virtual void DoMakeChange(Data& data)
+    {
+       if(data.pSolutionSet->size > 0)
+         return;
+
        int sum = 0;
        for (int i = 0; i < data.nNumCoins && sum < data.nTotalVal; i++) 
        {
@@ -145,10 +149,12 @@ class MakeChange{
         cout<<"How many coins are there?"<<endl; 
         cin>>nNC;
 
-        if(!pData)
+        if(pData)
         {
-            pData = new Data(TV,nNC);
+          delete pData;
+          pData = NULL;
         }
+        pData = new Data(TV,nNC);
         cout<<"Enter the coin values:"<<endl; 
         for (int i = 0; i < pData->nNumCoins; i++) 
         {
@@ -190,6 +196,8 @@ int
 main(int argc,char** argv){
   MakeChange* pMakeChange = new MakeChange(new GreedyApproachMakeChange());
   (*pMakeChange).fillData().performMakeChange().showSolution();
+  (*pMakeChange).performMakeChange().showSolution();
+  (*pMakeChange).showSolution();
   delete pMakeChange;
   return 0;
 }
