@@ -11,15 +11,18 @@ class SolutionSet{
       bool          isSol;
       int*          pCoins;
       int           size;
+      
       SolutionSet(int num)
       {
           this->isSol   = false;
           this->size    = 0;
           this->pCoins  = new int[num];
       }
+      
       ~SolutionSet()
       {
-        if(pCoins){
+        if(pCoins)
+        {
           delete [] pCoins;
           pCoins = NULL;
         }
@@ -121,7 +124,8 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
 
 class DynamicApproachMakeChange : public MakeChangeInterface{
   public:
-    virtual void DoMakeChange(Data& data){
+    virtual void DoMakeChange(Data& data)
+    {
     }
 };
 
@@ -172,7 +176,8 @@ class MakeChange{
         return (*this);
     }
 
-    MakeChange& showSolution(){
+    MakeChange& showSolution()
+    {
       if(this->pData->pSolutionSet->isSol)
       {  
         for (int i = 0; i < this->pData->pSolutionSet->size; i++) 
