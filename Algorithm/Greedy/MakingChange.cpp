@@ -131,6 +131,9 @@ class MakeChange{
         cout<<"How many coins are there?"<<endl; 
         cin>>pData->nNumCoins;
 
+        if(pData->pCoins)
+         delete pData->pCoins;
+
         pData->pCoins = new int[pData->nNumCoins];
         cout<<"Enter the coin values:"<<endl; 
 
