@@ -37,9 +37,10 @@ class Data{
 
       void InitSolution()
       {
-             delete pSolutionSet;
-             pSolutionSet = NULL;
-             pSolutionSet  = new SolutionSet(this->nNumCoins);
+           if(pSolutionSet)
+              delete pSolutionSet;
+           pSolutionSet = NULL;
+           pSolutionSet  = new SolutionSet(this->nNumCoins);
       }
      
       Data(int TV,int nNC)
