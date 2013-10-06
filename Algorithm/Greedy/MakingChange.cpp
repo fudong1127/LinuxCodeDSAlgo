@@ -146,8 +146,10 @@ class MakeChange{
     }
 
     MakeChange& showSolution(){
-      if(this->pData->pSolutionSet){  
-        for (int i = 0; i < this->pData->pSolutionSet->size; i++) {
+      if(this->pData->pSolutionSet)
+      {  
+        for (int i = 0; i < this->pData->pSolutionSet->size; i++) 
+        {
           cout<<this->pData->pSolutionSet->pCoins[i]<<" ";
         }
       }
