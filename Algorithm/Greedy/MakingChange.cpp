@@ -127,10 +127,10 @@ class MakeChange{
     
     MakeChange& performMakeChange(void)
     {
-      if(this->pInterface)
+      if(this->pInterface && pData)
         this->pInterface->performMakeChange(*pData);
       else
-        cout<<"You forgot to set the Interface!!"<<endl;
+        cout<<"Check the parameters you are passing!!"<<endl;
 
       return *this;
     }
