@@ -10,11 +10,13 @@ class SolutionSet{
   public:
       int*          pCoins;
       int           size;
-      SolutionSet(int num){
+      SolutionSet(int num)
+      {
           this->size    = 0;
           this->pCoins  = new int[num];
       }
-      ~SolutionSet(){
+      ~SolutionSet()
+      {
         if(pCoins){
           delete [] pCoins;
           pCoins = NULL;
@@ -29,12 +31,15 @@ class Data{
       int           nNumCoins;
       int*          pCoins;
       SolutionSet*  pSolutionSet;
-      ~Data(){
-        if(pCoins){
+      ~Data()
+      {
+        if(pCoins)
+        {
           delete [] pCoins;
           pCoins = NULL;
         }
-        if(pSolutionSet){
+        if(pSolutionSet)
+        {
           delete pSolutionSet;
           pSolutionSet = NULL;
         }
@@ -52,14 +57,16 @@ class MakeChangeInterface{
     void performMakeChange(Data& data)
     {
        qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
-       if(data.pSolutionSet){
+       if(data.pSolutionSet)
+       {
           delete data.pSolutionSet;
        }
        data.pSolutionSet  = new SolutionSet(data.nNumCoins);
        DoMakeChange(data);
     }
 
-    static int compare(const void* num1,const void* num2){
+    static int compare(const void* num1,const void* num2)
+    {
         int nResult = 0;
         int n1 = *(int*)num1;
         int n2 = *(int*)num2;
@@ -158,12 +165,14 @@ class MakeChange{
 
     ~MakeChange()
     {
-        if(pData){
+        if(pData)
+        {
           delete pData;
           pData = NULL;
         }
         
-        if(this->pInterface){
+        if(this->pInterface)
+        {
           delete this->pInterface;
           this->pInterface = NULL;
         }
