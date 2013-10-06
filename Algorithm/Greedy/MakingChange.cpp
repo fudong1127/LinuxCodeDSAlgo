@@ -178,7 +178,7 @@ class MakeChange{
 
     MakeChange& showSolution()
     {
-      if(this->pData->pSolutionSet->isSol)
+      if(this->pData && this->pData->pSolutionSet->isSol)
       {  
         for (int i = 0; i < this->pData->pSolutionSet->size; i++) 
         {
