@@ -34,22 +34,22 @@ class Data{
       int           nNumCoins;
       int*          pCoins;
       SolutionSet*  pSolutionSet;
-      void ResetSolution()
+
+      void InitSolution()
       {
-          if(pSolutionSet)
-          {
              delete pSolutionSet;
              pSolutionSet = NULL;
              pSolutionSet  = new SolutionSet(this->nNumCoins);
-          }
       }
+     
       Data(int TV,int nNC)
       {
           this->nTotalVal     = TV;
           this->nNumCoins     = nNC;
           this->pCoins        = new int[this->nNumCoins];
-          this->pSolutionSet  = new SolutionSet(this->nNumCoins);
+          this->pSolutionSet  = NULL;
       }
+     
       ~Data()
       {
         if(pCoins)
@@ -100,7 +100,7 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
   public:
     virtual void DoMakeChange(Data& data)
     {
-       data.ResetSolution();
+       data.InitSolution();
        int sum = 0;
        for (int i = 0; i < data.nNumCoins && sum < data.nTotalVal; i++) 
        {
