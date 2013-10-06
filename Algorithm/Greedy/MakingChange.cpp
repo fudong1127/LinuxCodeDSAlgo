@@ -6,17 +6,40 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-typedef struct __SolutionSet{
+class SolutionSet{
+  public:
       int*          pCoins;
       int           size;
-}SolutionSet;
+      SolutionSet(int num){
+          this->size    = 0;
+          this->pCoins  = new int[num];
+      }
+      ~SolutionSet(){
+        if(pCoins){
+          delete [] pCoins;
+          pCoins = NULL;
+        }
+        size = -1;
+      }
+};
 
-typedef struct __Data{
+class Data{
+  public:
       int           nTotalVal;
       int           nNumCoins;
       int*          pCoins;
       SolutionSet*  pSolutionSet;
-}Data;
+      ~Data(){
+        if(pCoins){
+          delete [] pCoins;
+          pCoins = NULL;
+        }
+        if(pSolutionSet){
+          delete pSolutionSet;
+          pSolutionSet = NULL;
+        }
+      }
+};
 
 class MakeChangeInterface{
   protected:
@@ -30,14 +53,9 @@ class MakeChangeInterface{
     {
        qsort(data.pCoins,data.nNumCoins,sizeof(int),this->compare);     
        if(data.pSolutionSet){
-          if(data.pSolutionSet->pCoins){
-            delete [] data.pSolutionSet->pCoins;
-          }
           delete data.pSolutionSet;
        }
-       data.pSolutionSet  = new SolutionSet();
-       data.pSolutionSet->pCoins  = new int[data.nNumCoins];
-       data.pSolutionSet->size    = 0;
+       data.pSolutionSet  = new SolutionSet(data.nNumCoins);
        DoMakeChange(data);
     }
 
@@ -66,9 +84,8 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
           int value = data.pCoins[i];
           if(value + sum > data.nTotalVal)
           {
-              delete [] data.pSolutionSet->pCoins;
-              data.pSolutionSet->pCoins = NULL;
-              data.pSolutionSet->size = -1;
+              delete data.pSolutionSet;
+              data.pSolutionSet = NULL;
               break;
           }
           data.pSolutionSet->pCoins[i] = value;
@@ -126,26 +143,21 @@ class MakeChange{
     }
 
     MakeChange& showSolution(){
+      if(this->pData->pSolutionSet){  
         for (int i = 0; i < this->pData->pSolutionSet->size; i++) {
           cout<<this->pData->pSolutionSet->pCoins[i]<<" ";
         }
-        return (*this);
+      }
+      return (*this);
     }
 
     ~MakeChange()
     {
-        if(this->pData){
-          if(this->pData->pSolutionSet){
-              if(this->pData->pSolutionSet->pCoins){
-                delete [] this->pData->pSolutionSet->pCoins;
-                this->pData->pSolutionSet->pCoins = NULL;
-              }
-              delete this->pData->pSolutionSet;
-              this->pData->pSolutionSet = NULL;
-          }
-          delete [] pData;
+        if(pData){
+          delete pData;
           pData = NULL;
         }
+        
         if(this->pInterface){
           delete this->pInterface;
           this->pInterface = NULL;
