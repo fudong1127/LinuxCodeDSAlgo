@@ -209,8 +209,6 @@ int
 main(int argc,char** argv){
   MakeChange* pMakeChange = new MakeChange(new GreedyApproachMakeChange());
   (*pMakeChange).fillData().performMakeChange().showSolution();
-  (*pMakeChange).performMakeChange().showSolution();
-  (*pMakeChange).showSolution();
   delete pMakeChange;
   return 0;
 }
