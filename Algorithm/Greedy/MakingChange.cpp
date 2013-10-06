@@ -34,6 +34,15 @@ class Data{
       int           nNumCoins;
       int*          pCoins;
       SolutionSet*  pSolutionSet;
+      void ResetSolution()
+      {
+          if(pSolutionSet)
+          {
+             delete pSolutionSet;
+             pSolutionSet = NULL;
+             pSolutionSet  = new SolutionSet(this->nNumCoins);
+          }
+      }
       Data(int TV,int nNC)
       {
           this->nTotalVal     = TV;
@@ -91,9 +100,7 @@ class GreedyApproachMakeChange : public MakeChangeInterface{
   public:
     virtual void DoMakeChange(Data& data)
     {
-       if(data.pSolutionSet->size > 0)
-         return;
-
+       data.ResetSolution();
        int sum = 0;
        for (int i = 0; i < data.nNumCoins && sum < data.nTotalVal; i++) 
        {
