@@ -14,3 +14,7 @@
 *.lai
 *.la
 *.a
+
+#Other files
+*.jnlp
+*jar
