@@ -21,9 +21,7 @@ getItrMaxBSTreeNode(arupBSTreeNode* root){
 arupBSTreeNode* 
 getMaxBSTreeNode(arupBSTreeNode* root,bool isRec)
 {
-    if(isRec){
+    if(isRec)
         return getRecMaxBSTreeNode(root);         
-    }else{
-        return getItrMaxBSTreeNode(root);
-    }
+    return getItrMaxBSTreeNode(root);
 }
