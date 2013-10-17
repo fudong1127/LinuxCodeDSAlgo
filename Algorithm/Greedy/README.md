@@ -3,5 +3,5 @@
     various catogories
     
 ##Greedy
-    * [Greedy Algo tutorial_1](http://www.radford.edu/~nokie/classes/360/greedy.html)
-    * [Change Making problem](http://en.wikipedia.org/wiki/Change-making_problem)
+* [Greedy Algo tutorial_1](http://www.radford.edu/~nokie/classes/360/greedy.html)
+* [Change Making problem](http://en.wikipedia.org/wiki/Change-making_problem)
