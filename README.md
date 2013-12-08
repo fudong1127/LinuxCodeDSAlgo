@@ -11,9 +11,7 @@ like it.  So if you intend to use this work, you are most welcome, I would be gl
 if you report bugs/issues and point me to methods which are more efficient,it would indeed 
 be a great learning curve.
 
-<a href="http://tinypic.com?ref=2qkui9s" target="_blank"><img src="http://i42.tinypic.com/2qkui9s.png" border="0"
-alt="Vi rocks"></a>
-
+<a href="http://tinypic.com?ref=2djct1l" target="_blank"><img alt="Image and video hosting by TinyPic" src="http://i43.tinypic.com/2djct1l.png" border="0" /></a>
 ### Usage
 Anyone is free to fork and download this project and its code and use it, just remmember to 
 acknowledge this project.
